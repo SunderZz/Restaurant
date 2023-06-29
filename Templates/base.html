@@ -1,0 +1,162 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La boutique de Samuel</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/font-awesome.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/templatemo-klassy-cafe.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <header
+      class="header-area header-sticky"
+      style="padding: 9px 0; border-top: 1px solid black"
+    >
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="col-12 justify-content-center align-items-center">
+            <nav
+              class="main-nav d-flex justify-content-between align-items-center text-center"
+            >
+              <div class="logo">
+                <a href="{% url 'index' %}">
+                  <img
+                    src="/media/product/logo.jpg"
+                    style="max-height: 8vh"
+                    alt="Logo"
+                    class="img-fluid"
+                  />
+                  {% if user.is_authenticated %}
+                  <span class="logo-text"
+                    >La boutique de {{user.username}}</span
+                  >
+                  {% else %}
+                  <span class="logo-text">Le Resto Créole</span>
+                  {% endif %}
+                </a>
+              </div>
+
+              <ul class="nav">
+                <li class="scroll-to-section">
+                  {% if user.is_authenticated %}
+                  <a href="{% url 'logout' %}" class="nav-link">Deconnexion</a>
+                  {% else %}
+                  <a href="{% url 'signup' %}" class="nav-link">S'inscrire</a>
+                </li>
+
+                <li class="scroll-to-section">
+                  <a href="{% url 'login' %}" class="nav-link">Connexion</a>
+                </li>
+                {% endif %}
+                <li class="scroll-to-section">
+                  {% if user.cart %}
+                  <a href="{% url 'cart' %}" class="nav-link">
+                    Voir le panier ({{ user.cart.orders.count }})
+                  </a>
+                  {% endif %}
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {% block content %} {% endblock %}
+    <footer>
+      <div class="container" style="height: 50px; margin-bottom: 0">
+        <div class="row">
+          <div class="col-lg-4 col-xs-12">
+            <div class="right-text-content">
+              <ul class="social-icons">
+                <li>
+                  <a href="https://github.com/SunderZz"
+                    ><i class="fa fa-github"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/samuel-gilles-59bab01ba/"
+                    ><i class="fa fa-linkedin"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4 col-xs-12">
+            <div class="left-text-content">
+              <p>© Copyright Gilles Samuel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <!-- jQuery -->
+  <script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel.js' %}"></script>
+  <script src="{% static 'js/accordions.js' %}"></script>
+  <script src="{% static 'js/datepicker.js' %}"></script>
+  <script src="{% static 'js/scrollreveal.min.js' %}"></script>
+  <script src="{% static 'js/waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+  <script src="{% static 'js/imgfix.min.js' %}"></script>
+  <script src="{% static 'js/slick.js' %}"></script>
+  <script src="{% static 'js/lightbox.js' %}"></script>
+  <script src="{% static 'js/isotope.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    $(function () {
+      var selectedClass = "";
+      $("p").click(function () {
+        selectedClass = $(this).attr("data-rel");
+        $("#portfolio").fadeTo(50, 0.1);
+        $("#portfolio div")
+          .not("." + selectedClass)
+          .fadeOut();
+        setTimeout(function () {
+          $("." + selectedClass).fadeIn();
+          $("#portfolio").fadeTo(50, 1);
+        }, 500);
+      });
+    });
+  </script>
+</html>
