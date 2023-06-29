@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="section" id="chefs">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4 text-center">
+        <div class="section-heading">
+          <h6>Votre panier</h6>
+          <h2>Vous avez fait le bon choix</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for orders in orders %}
+      <div class="col-lg-4">
+        <div class="chef-item">
+          <div class="thumb">
+            <div class="overlay text-center">
+              <!-- Ajout de la classe "text-center" -->
+              <p>{{orders.product.description}}</p>
+            </div>
+
+            <img
+              src="{{orders.product.thumbnail.url}}"
+              class="img-fluid rounded-start"
+              alt="{{orders.product.name}}"
+              style="max-height: 30vh"
+            />
+          </div>
+          <div class="down-content">
+            <h4>{{orders.product.name}}</h4>
+            <span>{{orders.quantity}} dans le panier</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="text-center">
+    <!-- Ajout de la classe "text-center" -->
+    <h6><a href="{% url 'delete-cart' %}">Supprimer le panier</a></h6>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<h2></h2>
+<h3></h3>
+
+<p>{{product.description}}</p>
+<p>{{product.stock}} en stock</p>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-xs-12">
+        <div class="left-text-content">
+          <div class="section-heading">
+            <h2>{{product.name}}</h2>
+            <h6>{{product.price}} €</h6>
+          </div>
+          <p>{{product.description}}</p>
+          <p>{{product.stock}} en stock</p>
+          {% if user.is_authenticated %}
+          <p>
+            <a href="{% url 'add-to-cart' product.slug %}"
+              >Ajouter dans le panier</a
+            >
+          </p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-xs-12">
+        <div class="right-content">
+          <div class="thumb">
+            <img src="{{product.thumbnail.url}}" alt="{{product.name}}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

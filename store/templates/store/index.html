@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block content %}
+<div id="top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="left-content">
+          <img src="/media/product/top-left-bg.jpg" />
+          <div class="inner-content">
+            {% if user.is_authenticated %}
+            <h4>{{user.username}}</h4>
+            {% else %}
+            <h4>Le Resto Créole</h4>
+
+            {% endif %}
+            <h6>Le meilleur de la gastronomie Créole</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="main-banner">
+          <div class="Modern-Slider">
+            <!-- Item -->
+            <div class="item">
+              <div class="img-fill">
+                <img src="/media/product/b.jpg" alt="" />
+              </div>
+            </div>
+            <!-- // Item -->
+            <!-- Item -->
+            <div class="item">
+              <div class="img-fill">
+                <img
+                  src="/media/product/plage-de-grande-anse-la-réunion.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <!-- // Item -->
+            <!-- Item -->
+            <div class="item">
+              <div class="img-fill">
+                <img src="/media/product/a.jpg" alt="" />
+              </div>
+            </div>
+            <!-- // Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section" id="menu">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="section-heading">
+          <h6>Le menu</h6>
+          <h2>Les plats du moments</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="menu-item-carousel">
+    <div class="col-lg-12">
+      <div class="owl-menu-item owl-carousel">
+        {% for product in products %}
+        <a href="{{product.get_absolute_url}}">
+          <div class="item">
+            <div
+              class="card"
+              style="background-image: url('{{product.thumbnail.url}}'); background-size: cover; background-position: center; background-size: 90%;"
+            >
+              <div class="price"><h6>{{product.price}} €</h6></div>
+              <div class="info">
+                <h1 class="title">{{product.name}}</h1>
+                <p class="description">{{product.description}}</p>
+                <div class="main-text-button">
+                  <div class="scroll-to-section">
+                    <i class="fa fa-angle-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div></div
+        ></a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
