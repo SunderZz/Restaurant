@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from text.settings import AUTH_USER_MODEL
+from DjangoWebSite.settings import AUTH_USER_MODEL
 from django.utils import timezone
 # Create your models here.
 """
